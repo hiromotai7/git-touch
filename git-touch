@@ -1,0 +1,13 @@
+#!/bin/bash
+
+TEMPSTR=$(mktemp -u XXXX)
+
+while [ -n "$1" ]
+do
+  mv $1 $1.$TEMPSTR && \
+  touch $1 && \
+  git add $1
+  mv $1.$TEMPSTR $1
+  shift
+done
+
