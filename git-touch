@@ -4,7 +4,8 @@ TEMPSTR=$(mktemp -u XXXX)
 
 while [ -n "$1" ]
 do
-  mv $1 $1.$TEMPSTR && \
+  cp $1 $1.$TEMPSTR && \
+  truncate $1 --size 0 && \
   touch $1 && \
   git add $1
   mv $1.$TEMPSTR $1
